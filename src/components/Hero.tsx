@@ -1,4 +1,4 @@
-import { GithubLogoIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon, GithubLogoIcon } from "@phosphor-icons/react";
 
 export function Hero() {
   return (
@@ -9,11 +9,14 @@ export function Hero() {
         </p>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] max-w-3xl">
           We build software that
-          <span className="text-text-muted"> developers actually want to use.</span>
+          <span className="text-text-muted">
+            {" "}
+            developers actually want to use.
+          </span>
         </h1>
         <p className="mt-6 text-lg text-text-secondary max-w-xl leading-relaxed">
-          We&apos;re engineers obsessed with developer experience,
-          clean APIs, and shipping things that work.
+          We&apos;re engineers obsessed with developer experience, clean APIs,
+          and shipping things that work.
         </p>
         <div className="mt-10 flex items-center gap-4">
           <a

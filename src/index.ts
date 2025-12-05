@@ -1,4 +1,4 @@
-import { serve, file } from "bun";
+import { file, serve } from "bun";
 import { join } from "path";
 import index from "./index.html";
 

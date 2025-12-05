@@ -1,5 +1,5 @@
 import { ArrowRight } from "@phosphor-icons/react";
-import { Project } from "../data/projects";
+import type { Project } from "../data/projects";
 
 export function ProjectRow({
   project,
@@ -19,7 +19,9 @@ export function ProjectRow({
         <h3 className="text-lg font-medium group-hover:text-text-secondary transition-colors">
           {project.name}
         </h3>
-        <p className="mt-1 text-sm text-text-muted truncate">{project.description}</p>
+        <p className="mt-1 text-sm text-text-muted truncate">
+          {project.description}
+        </p>
       </div>
       <div className="hidden sm:flex items-center gap-2 ml-8">
         {project.tags.map((tag) => (

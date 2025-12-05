@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { Work } from "./components/Work";
 import { About } from "./components/About";
 import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Hero } from "./components/Hero";
 import { ImagePreview } from "./components/ImagePreview";
-import { Project } from "./data/projects";
+import { Work } from "./components/Work";
+import type { Project } from "./data/projects";
 
 export function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -17,7 +17,9 @@ export function App() {
   useEffect(() => {
     if (activeProject && activeProject.images.length > 1) {
       intervalRef.current = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % activeProject.images.length);
+        setCurrentImageIndex(
+          (prev) => (prev + 1) % activeProject.images.length,
+        );
       }, 3000);
     }
     return () => {
@@ -37,7 +39,10 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text-primary antialiased" onMouseMove={handleMouseMove}>
+    <div
+      className="min-h-screen bg-bg text-text-primary antialiased"
+      onMouseMove={handleMouseMove}
+    >
       <Header />
       <main>
         <Hero />
