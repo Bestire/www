@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import "./index.css";
-import logo from "./bestire.jpg";
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -84,7 +83,7 @@ export function App() {
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5 group">
             <img
-              src={logo}
+              src="/bestire.jpg"
               alt="Bestire"
               className="h-8 w-8 rounded-md object-cover ring-1 ring-border group-hover:ring-border-hover transition-all"
             />
