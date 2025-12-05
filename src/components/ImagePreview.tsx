@@ -1,4 +1,4 @@
-import { Project } from "../data/projects";
+import { type Project } from "../data/projects";
 
 export function ImagePreview({
   project,
@@ -33,9 +33,8 @@ export function ImagePreview({
           {project.images.map((_, index) => (
             <div
               key={index}
-              className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                index === currentImageIndex ? "bg-text-primary" : "bg-text-faint"
-              }`}
+              className={`w-1.5 h-1.5 rounded-full transition-colors ${index === currentImageIndex ? "bg-text-primary" : "bg-text-faint"
+                }`}
             />
           ))}
         </div>
