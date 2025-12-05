@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import "./index.css";
 import logo from "./bestire.jpg";
 
@@ -17,9 +18,68 @@ function ArrowIcon({ className }: { className?: string }) {
   );
 }
 
+type Project = {
+  name: string;
+  description: string;
+  tags: string[];
+  href: string;
+  images: string[];
+};
+
+const projects: Project[] = [
+  {
+    name: "empty title",
+    description: "empty description",
+    tags: ["tags", "go", "here"],
+    href: "#",
+    images: ["https://assets.e-z.gg/e-ztransparent.png"],
+  },
+  {
+    name: "empty title",
+    description: "empty description",
+    tags: ["tags", "go", "here"],
+    href: "#",
+    images: [],
+  },
+  {
+    name: "empty title",
+    description: "empty description",
+    tags: ["tags", "go", "here"],
+    href: "#",
+    images: [],
+  },
+];
+
 export function App() {
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (activeProject && activeProject.images.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % activeProject.images.length);
+      }, 3000);
+    }
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [activeProject]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleProjectHover = (project: Project | null) => {
+    setActiveProject(project);
+    setCurrentImageIndex(0);
+  };
+
   return (
-    <div className="min-h-screen bg-bg text-text-primary antialiased">
+    <div className="min-h-screen bg-bg text-text-primary antialiased" onMouseMove={handleMouseMove}>
       <header className="fixed top-0 left-0 right-0 z-50 bg-bg/80 backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5 group">
@@ -75,7 +135,7 @@ export function App() {
                 href="https://github.com/bestire"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent text-accent-foreground text-sm font-medium rounded-md hover:bg-white transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent text-accent-foreground text-sm font-medium rounded-md hover:bg-white active:scale-95 active:bg-text-secondary transition-all duration-150"
               >
                 <GitHubIcon className="h-4 w-4" />
                 View on GitHub
@@ -97,24 +157,13 @@ export function App() {
               <h2 className="text-sm text-text-muted uppercase tracking-wide">Selected Work</h2>
             </div>
             <div className="space-y-1">
-              <ProjectRow
-                name="empty title"
-                description="empty description"
-                tags={["tags", "go", "here"]}
-                href="#"
-              />
-              <ProjectRow
-                name="empty title"
-                description="empty description"
-                tags={["tags", "go", "here"]}
-                href="#"
-              />
-              <ProjectRow
-                name="empty title"
-                description="empty description"
-                tags={["tags", "go", "here"]}
-                href="#"
-              />
+              {projects.map((project, index) => (
+                <ProjectRow
+                  key={index}
+                  project={project}
+                  onHover={handleProjectHover}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -159,34 +208,61 @@ export function App() {
           </a>
         </div>
       </footer>
+
+      {activeProject && activeProject.images.length > 0 && (
+        <div
+          className="fixed pointer-events-none z-50 transition-opacity duration-200"
+          style={{
+            left: cursorPos.x + 5,
+            top: cursorPos.y + 5,
+          }}
+        >
+          <div className="w-64 h-40 rounded-lg overflow-hidden ring-1 ring-border-hover shadow-2xl">
+            <img
+              src={activeProject.images[currentImageIndex]}
+              alt={activeProject.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {activeProject.images.length > 1 && (
+            <div className="flex justify-center gap-1 mt-2">
+              {activeProject.images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${index === currentImageIndex ? "bg-text-primary" : "bg-text-faint"
+                    }`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
 function ProjectRow({
-  name,
-  description,
-  tags,
-  href,
+  project,
+  onHover,
 }: {
-  name: string;
-  description: string;
-  tags: string[];
-  href: string;
+  project: Project;
+  onHover: (project: Project | null) => void;
 }) {
   return (
     <a
-      href={href}
+      href={project.href}
       className="group flex items-center justify-between py-5 border-b border-border hover:border-border-hover transition-colors"
+      onMouseEnter={() => onHover(project)}
+      onMouseLeave={() => onHover(null)}
     >
       <div className="flex-1 min-w-0">
         <h3 className="text-lg font-medium group-hover:text-text-secondary transition-colors">
-          {name}
+          {project.name}
         </h3>
-        <p className="mt-1 text-sm text-text-muted truncate">{description}</p>
+        <p className="mt-1 text-sm text-text-muted truncate">{project.description}</p>
       </div>
       <div className="hidden sm:flex items-center gap-2 ml-8">
-        {tags.map((tag) => (
+        {project.tags.map((tag) => (
           <span
             key={tag}
             className="px-2 py-0.5 text-xs text-text-muted bg-bg-elevated rounded"
