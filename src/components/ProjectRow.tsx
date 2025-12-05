@@ -1,5 +1,5 @@
+import { ArrowRight } from "@phosphor-icons/react";
 import { Project } from "../data/projects";
-import arrowIcon from "../assets/arrow.svg";
 
 export function ProjectRow({
   project,
@@ -31,10 +31,9 @@ export function ProjectRow({
           </span>
         ))}
       </div>
-      <img
-        src={arrowIcon}
-        alt=""
-        className="ml-6 h-5 w-5 text-text-faint group-hover:text-text-secondary group-hover:translate-x-1 transition-all"
+      <ArrowRight
+        size={20}
+        className="ml-6 text-text-faint group-hover:text-text-secondary group-hover:translate-x-1 transition-all"
       />
     </a>
   );

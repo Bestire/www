@@ -5,6 +5,7 @@
     "": {
       "name": "bun-react-template",
       "dependencies": {
+        "@phosphor-icons/react": "^2.1.10",
         "bun-plugin-tailwind": "^0.1.2",
         "react": "^19",
         "react-dom": "^19",
@@ -39,6 +40,8 @@
     "@oven/bun-windows-x64": ["@oven/bun-windows-x64@1.3.3", "", { "os": "win32", "cpu": "x64" }, "sha512-kWqa1LKvDdAIzyfHxo3zGz3HFWbFHDlrNK77hKjUN42ycikvZJ+SHSX76+1OW4G8wmLETX4Jj+4BM1y01DQRIQ=="],
 
     "@oven/bun-windows-x64-baseline": ["@oven/bun-windows-x64-baseline@1.3.3", "", { "os": "win32", "cpu": "x64" }, "sha512-u5eZHKq6TPJSE282KyBOicGQ2trkFml0RoUfqkPOJVo7TXGrsGYYzdsugZRnVQY/WEmnxGtBy4T3PAaPqgQViA=="],
+
+    "@phosphor-icons/react": ["@phosphor-icons/react@2.1.10", "", { "peerDependencies": { "react": ">= 16.8", "react-dom": ">= 16.8" } }, "sha512-vt8Tvq8GLjheAZZYa+YG/pW7HDbov8El/MANW8pOAz4eGxrwhnbfrQZq0Cp4q8zBEu8NIhHdnr+r8thnfRSNYA=="],
 
     "@types/bun": ["@types/bun@1.3.3", "", { "dependencies": { "bun-types": "1.3.3" } }, "sha512-ogrKbJ2X5N0kWLLFKeytG0eHDleBYtngtlbu9cyBKFtNL3cnpDZkNdQj8flVf6WTZUX5ulI9AY1oa7ljhSrp+g=="],
 

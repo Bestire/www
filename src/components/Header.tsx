@@ -1,4 +1,4 @@
-import githubIcon from "../assets/github.svg";
+import { GithubLogoIcon } from "@phosphor-icons/react";
 
 export function Header() {
   return (
@@ -32,7 +32,7 @@ export function Header() {
             className="ml-2 p-2 text-text-secondary hover:text-text-primary transition-colors"
             aria-label="GitHub"
           >
-            <img src={githubIcon} alt="" className="h-5 w-5" />
+            <GithubLogoIcon size={20} />
           </a>
         </nav>
       </div>

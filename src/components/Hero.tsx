@@ -1,5 +1,4 @@
-import githubIcon from "../assets/github.svg";
-import arrowIcon from "../assets/arrow.svg";
+import { GithubLogoIcon, ArrowRightIcon } from "@phosphor-icons/react";
 
 export function Hero() {
   return (
@@ -23,7 +22,7 @@ export function Hero() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent text-accent-foreground text-sm font-medium rounded-md hover:bg-white active:scale-95 active:bg-text-secondary transition-all duration-150"
           >
-            <img src={githubIcon} alt="" className="h-4 w-4" />
+            <GithubLogoIcon size={16} />
             View on GitHub
           </a>
           <a
@@ -31,7 +30,7 @@ export function Hero() {
             className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
           >
             See our work
-            <img src={arrowIcon} alt="" className="h-4 w-4" />
+            <ArrowRightIcon size={16} />
           </a>
         </div>
       </div>
