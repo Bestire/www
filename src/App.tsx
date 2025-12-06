@@ -47,6 +47,7 @@ export function App() {
   };
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: cursor tracking for image preview
     <div
       className="min-h-screen bg-bg text-text-primary antialiased"
       onMouseMove={handleMouseMove}

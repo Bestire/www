@@ -30,9 +30,9 @@ export function ImagePreview({
       </div>
       {project.images.length > 1 && (
         <div className="flex justify-center gap-1 mt-2">
-          {project.images.map((_, index) => (
+          {project.images.map((url, index) => (
             <div
-              key={index}
+              key={url}
               className={`w-1.5 h-1.5 rounded-full transition-colors ${
                 index === currentImageIndex
                   ? "bg-text-primary"

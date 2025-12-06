@@ -15,9 +15,9 @@ export function Work({
           </h2>
         </div>
         <div className="space-y-1">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectRow
-              key={index}
+              key={project.name}
               project={project}
               onHover={onProjectHover}
             />
