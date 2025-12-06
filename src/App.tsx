@@ -6,13 +6,21 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { ImagePreview } from "./components/ImagePreview";
 import { Work } from "./components/Work";
-import type { Project } from "./data/projects";
+import { type Project, projects } from "./data/projects";
 
 export function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    const imageUrls = projects.flatMap((project) => project.images);
+    for (const url of imageUrls) {
+      const img = new Image();
+      img.src = url;
+    }
+  }, []);
 
   useEffect(() => {
     if (activeProject && activeProject.images.length > 1) {
