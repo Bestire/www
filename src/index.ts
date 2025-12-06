@@ -1,5 +1,5 @@
+import { join } from "node:path";
 import { file, serve } from "bun";
-import { join } from "path";
 import index from "./index.html";
 
 const publicDir = join(import.meta.dir, "../public");
